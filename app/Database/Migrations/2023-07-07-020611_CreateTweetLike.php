@@ -3,9 +3,8 @@
 namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
-use CodeIgniter\Database\RawSql;
 
-class CreateTweets extends Migration
+class CreateTweetLike extends Migration
 {
     public function up()
     {
@@ -20,25 +19,18 @@ class CreateTweets extends Migration
                 'constraint' => 5,
 
             ],
-            'content' => [
-                'type' => 'TEXT',
-            ],
-            'category' => [
-                'type' => 'VARCHAR',
-                'constraint' => 30,
-            ],
-            'created_at' => [
-                'type' => 'TIMESTAMP',
-                'default' => new RawSql('CURRENT_TIMESTAMP')
+            'tweet_id' => [
+                'type' => 'INT',
+                'constraint' => 5,
             ],
         ]);
 
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('tweets', true);
+        $this->forge->createTable('tweet_likes', true);
     }
 
     public function down()
     {
-        $this->forge->dropTable('tweets');
+        $this->forge->dropTable('tweet_likes');
     }
 }

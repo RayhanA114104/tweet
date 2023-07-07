@@ -5,7 +5,7 @@ namespace App\Database\Migrations;
 use CodeIgniter\Database\Migration;
 use CodeIgniter\Database\RawSql;
 
-class CreateTweets extends Migration
+class CreateTweetComment extends Migration
 {
     public function up()
     {
@@ -20,12 +20,22 @@ class CreateTweets extends Migration
                 'constraint' => 5,
 
             ],
+            'tweet_id' => [
+                'type' => 'INT',
+                'constraint' => 5,
+
+            ],
             'content' => [
                 'type' => 'TEXT',
             ],
-            'category' => [
-                'type' => 'VARCHAR',
-                'constraint' => 30,
+            'image' => [
+                'type' => 'TEXT',
+                'null' => true,
+            ],
+            'is_image' => [
+                'type' => 'INT',
+                'constraint' => 1,
+                'default' => 0,
             ],
             'created_at' => [
                 'type' => 'TIMESTAMP',
@@ -34,11 +44,11 @@ class CreateTweets extends Migration
         ]);
 
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('tweets', true);
+        $this->forge->createTable('tweet_comments', true);
     }
 
     public function down()
     {
-        $this->forge->dropTable('tweets');
+        $this->forge->dropTable('tweet_comments');
     }
 }
